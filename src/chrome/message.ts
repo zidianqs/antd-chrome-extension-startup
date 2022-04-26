@@ -1,7 +1,9 @@
-/* eslint-disable no-undef */
 // 统一消息格式
 class ChromeMessage {
-    constructor(msg, params) {
+    msg: any;
+    params: any;
+
+    constructor(msg: any, params?: any) {
         this.msg = msg;
         this.params = params;
     }
@@ -10,7 +12,7 @@ class ChromeMessage {
 function getFuncParameters(func) {
     if (typeof func === 'function') {
         const match = /[^(]+\(([^)]*)?\)/gm.exec(Function.prototype.toString.call(func));
-        if (match[1]) {
+        if (match && match[1]) {
             const args = match[1].replace(/[^,\w]*/g, '').split(',');
             return args.length;
         }
@@ -78,9 +80,11 @@ class BackgroundClient {
     seedMessage(message) {
         return new Promise((resolve) => {
             chrome.tabs.query({ active: true }, (tabs) => {
-                chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
-                    resolve(response);
-                });
+                if (tabs.length) {
+                    chrome.tabs.sendMessage(tabs[0].id!, message, (response) => {
+                        resolve(response);
+                    });
+                }
             });
         });
     }

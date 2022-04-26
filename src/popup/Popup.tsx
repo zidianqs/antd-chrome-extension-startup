@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
     Form, Input, Button, Checkbox
-} from 'antd';
+} from '@alifd/next';
 import './Popup.scss';
 import { go } from '../chrome';
 
 export default class Popup extends Component {
-
     state = {
+        // @ts-ignore
         name: WRAPPER_CLASS_NAME
     }
 
@@ -17,12 +17,13 @@ export default class Popup extends Component {
 
     render() {
         return (
+            // @ts-ignore
             <div className={`${WRAPPER_CLASS_NAME}`}>
                 <Form
                     layout="Vertical"
                     name="basic"
                     className="basic-table"
-                    initialValues={{ remember: true }}
+                    defaultValue={{ remember: true }}
                 >
                     <Form.Item
                         label="Username"
@@ -40,7 +41,7 @@ export default class Popup extends Component {
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item name="remember" valuePropName="checked">
+                    <Form.Item name="remember">
                         <Checkbox>Remember me</Checkbox>
                     </Form.Item>
 

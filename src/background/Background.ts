@@ -1,5 +1,8 @@
 import {
-    create, backgroundClient, ChromeMessage, reload
+    // create,
+    backgroundClient,
+    ChromeMessage
+    // reload
 } from '../chrome';
 
 export default class Background {
@@ -14,13 +17,13 @@ export default class Background {
 
     // 初始化右键菜单
     initContentMenu() {
-        create({
-            id: 'demo',
-            title: '演示右键功能',
-            onclick: () => {
-                backgroundClient.seedMessage(new ChromeMessage('show drawer'));
-            }
-        });
+        // create({
+        //     id: 'demo',
+        //     title: '演示右键功能',
+        //     onclick: () => {
+        //         backgroundClient.seedMessage(new ChromeMessage('show drawer'));
+        //     }
+        // });
     }
 
     // 初始化消息通道

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 function set(key, value) {
     return new Promise((resolve) => {
         chrome.storage.sync.set({ [key]: value }, () => {

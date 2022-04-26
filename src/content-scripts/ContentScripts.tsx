@@ -5,6 +5,8 @@ import './ContentScripts.scss';
 import DrawerDemo from './DrawerDemo';
 
 export default class ContentScripts {
+    container: HTMLElement|null;
+
     constructor() {
         this.container = null;
         this.init();
@@ -37,15 +39,16 @@ export default class ContentScripts {
         const { document } = window;
         this.container = document.createElement('div');
         this.container.setAttribute('id', 'chrome-extension-content-base-element');
+        // @ts-ignore
         this.container.setAttribute('class', WRAPPER_CLASS_NAME);
         document.body.appendChild(this.container);
     }
 
     showContainer() {
-        this.container.setAttribute('style', 'display: block');
+        this.container!.setAttribute('style', 'display: block');
     }
 
     hideContainer() {
-        this.container.setAttribute('style', 'display: none');
+        this.container!.setAttribute('style', 'display: none');
     }
 }
